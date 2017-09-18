@@ -146,8 +146,11 @@ function handlePost(res, req, uri) {
 // You'll be modifying this function
 function sendIndex(res) {
   var contentType = 'text/html'
-    , html = ''
-      html += droneArray;
+    , html = '';
+    for(var i=0; i<droneArray.length; i++){
+      html += '<div>' + JSON.stringify(droneArray[i]) + '</div>';
+    }
+    
   res.writeHead(200, {'Content-type': contentType})
   res.end(html, 'utf-8')
 }
