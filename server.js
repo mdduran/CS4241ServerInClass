@@ -147,7 +147,7 @@ function handlePost(res, req, uri) {
 function sendIndex(res) {
   var contentType = 'text/html'
     , html = ''
-  
+      html += droneArray;
   res.writeHead(200, {'Content-type': contentType})
   res.end(html, 'utf-8')
 }
