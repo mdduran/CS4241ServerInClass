@@ -11,8 +11,24 @@ var http = require('http')
 //app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(bodyParser.json());
 
-// Add more movies! (For a technical challenge, use a file, database, or even an API!)
-var movies = ['Jaws', 'Jaws 2', 'Jaws 3', 'Doctor Strange']
+var csv = fs.createReadStream('drones.csv');
+
+var data = '';
+csv.on('data', function(d){
+  data += d;
+})
+
+var droneArray = [];
+
+csv.on('end', function(){
+  var rows = data.split('\n');
+  for(var i=0; i<rows.length; i++){
+    var entries = rows[i].split(',');
+    droneArray.push(entries);
+  }
+  csv.close();
+})
+
 
 
 function processPost(req,res,callback){
