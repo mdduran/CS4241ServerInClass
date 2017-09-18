@@ -24,9 +24,15 @@ csv.on('end', function(){
   var rows = data.split('\n');
   for(var i=0; i<rows.length; i++){
     var entries = rows[i].split(',');
-    droneArray.push(entries);
+    var line = {date: entries[0],
+                company: entries[1],
+                category: entries[2],
+                various_applications: entries[3],
+                aircraft: entries[4]};
+    droneArray.push(line);
   }
   csv.close();
+
 })
 
 
